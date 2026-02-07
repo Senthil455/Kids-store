@@ -1,8 +1,10 @@
 
 import Breadcrumb from "@/components/modules/breadCrumb/breadCrumb";
 import { getMe } from "@/utils/serverHelper";
+import { paginate } from "@/utils/helper";
 import WishListItems from "@/components/template/wishList/wishListItems";
-import FavoriteModel from "../../../model/favorite";
+import ProductModel from "../../../../model/product";
+import FavoriteModel from "../../../../model/favorite";
 
 export const metadata = {
     title: "Favorites List - Kids Store",
@@ -34,12 +36,19 @@ export const metadata = {
 };
 
 const page = async ({ searchParams }) => {
-
     const user = await getMe()
-    if (!user) return redirect("/login-register")
+    if (!user) redirect("/login-register")
 
-    const searchparams = await searchParams
-    const paginatedData = await paginate(FavoriteModel, searchparams, { user: user.id }, "products", true, false)
+    const searchparams = searchParams
+
+    const wishlist = await FavoriteModel.findOne({ user: user.id })
+    if (!wishlist) return null
+
+    const paginatedData = await paginate(
+        ProductModel,
+        searchparams,
+        { _id: { $in: wishlist.products } }
+    )
 
     return (
         <>
