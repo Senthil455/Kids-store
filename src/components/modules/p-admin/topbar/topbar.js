@@ -9,7 +9,8 @@ const Topbar = ({ user }) => {
                     <Image
                         height={200}
                         width={200}
-                        src="/avatar.svg" alt="" />
+                        alt=""
+                        src={user.avatar}/>
                     <div>
                         <p>{user.username}</p>
                         <span>ADMIN</span>
