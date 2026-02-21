@@ -34,7 +34,7 @@ export async function generateMetadata() {
 
 const page = async () => {
     return (
-        <>
+        <div className="container">
             <Breadcrumb
                 route={"about"}
                 title={"About US."} />
@@ -61,7 +61,7 @@ const page = async () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
