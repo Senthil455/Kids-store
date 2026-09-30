@@ -1,0 +1,65 @@
+const VERIFY_URL =
+    process.env.PAYMENT_VERIFY_URL || "https://payment.payment gateway.com/pg/v4/payment/verify.json";
+const REQUEST_URL =
+    process.env.PAYMENT_API_BASE_URL || "https://payment.payment gateway.com/pg/v4/payment/request.json";
+const START_PAY_URL =
+    process.env.PAYMENT_PAYMENT_BASE_URL || "https://payment.payment gateway.com/pg/StartPay/";
+
+/** store currency → gateway amount. payment gateway only accepts whole numbers (a percent coupon can leave decimals). */
+const toGatewayAmount = (store currency) => Math.round(Number(store currency || 0) * 10);
+
+const paymentUrl = (authority) => `${START_PAY_URL.replace(/\/?$/, "/")}${authority}`;
+
+const postJson = async (url, body) => {
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(15000),
+    });
+    const data = await response.json().catch(() => ({}));
+    return { response, data };
+};
+
+exports.toGatewayAmount = toGatewayAmount;
+exports.paymentUrl = paymentUrl;
+
+exports.createPayment = async (amountIngateway amount, description, mobile) => {
+    const { response, data } = await postJson(REQUEST_URL, {
+        merchant_id: process.env.PAYMENT_MERCHANT_ID,
+        callback_url: process.env.PAYMENT_PAYMENT_CALLBACK_URL,
+        amount: Math.round(amountIngateway amount),
+        description,
+        metadata: mobile ? { mobile } : {},
+    });
+
+    if (!response.ok || (data?.errors && Object.keys(data.errors).length)) {
+        throw new Error("Payment request failed");
+    }
+
+    return data;
+};
+
+exports.verifyPayment = async (authority, amountIngateway amount) => {
+    let result;
+    try {
+        result = await postJson(VERIFY_URL, {
+            merchant_id: process.env.PAYMENT_MERCHANT_ID,
+            authority,
+            amount: Math.round(amountIngateway amount),
+        });
+    } catch (err) {
+        // network problem: unknown, NOT "failed" — the caller keeps the order pending and retries later
+        return { success: false, unreachable: true, message: "Payment gateway unreachable" };
+    }
+
+    const { response, data } = result;
+    if (!response.ok || (data?.errors && Object.keys(data.errors).length)) {
+        return { success: false, message: "Payment verification failed" };
+    }
+    if (data.data?.code === 100 || data.data?.code === 101) {
+        return { success: true, refId: data.data.ref_id };
+    }
+
+    return { success: false, message: "Payment not verified" };
+};
