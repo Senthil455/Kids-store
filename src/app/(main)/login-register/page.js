@@ -1,25 +1,16 @@
-"use client"
-import { authTypes } from "@/utils/constants";
-import { useState } from "react";
-import Login from "@/components/template/main/login-register/Login";
-import Register from "@/components/template/main/login-register/Register";
-import AuthShell from "@/components/modules/main/authShell";
+import { redirect } from "next/navigation";
+import AuthForms from "@/components/template/main/login-register/authForms";
+import { getMe } from "@/utils/auth/authGuard";
 
-const Login_register = () => {
-    const [authType, setAuthType] = useState(authTypes.LOGIN);
-
-    const showRegisterForm = () => setAuthType(authTypes.REGISTER);
-    const showloginForm = () => setAuthType(authTypes.LOGIN);
-
-    return (
-        <AuthShell image="https://images.unsplash.com/photo-1684244160171-97f5dac39204?auto=format&fit=crop&w=600&h=600&q=80">
-            {authType === authTypes.LOGIN ? (
-                <Login showRegisterForm={showRegisterForm} />
-            ) : (
-                <Register showloginForm={showloginForm} />
-            )}
-        </AuthShell>
-    );
+export const metadata = {
+    title: "Log in / Sign up | Kids Store",
+    robots: { index: false, follow: false },
 };
 
-export default Login_register;
+// already logged in -> nothing to do here
+export default async function LoginRegisterPage() {
+    const user = await getMe();
+    if (user) redirect("/p-user");
+
+    return <AuthForms />;
+}
