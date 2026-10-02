@@ -1,37 +1,18 @@
 import connectToDB from "@/configs/db";
-import ticketService from "@/services/server/shared/ticket";
+import ticketService from "@/services/server/user/ticket";
 import { authUser } from "@/utils/auth/authGuard";
-import validateObjectId from "@/utils/validateObjectId";
-import { handleRouteError, jsonError, respond } from "@/utils/apiResponse";
+import { fromService, handleRouteError, jsonError } from "@/utils/apiResponse";
 
+/* GET /api/user/tickets/:id  -> ticket + replies (only the owner) */
 export async function GET(request, { params }) {
     try {
         await connectToDB();
 
         const user = await authUser();
-
-        if (!user) {
-            return jsonError("Unauthorized", 401);
-        }
+        if (!user || user.status === "expired") return jsonError("Unauthorized", 401);
 
         const { id } = await params;
-
-        if (!validateObjectId(id)) {
-            return jsonError("Not Valid :)", 422);
-        }
-
-        const result = await ticketService.getTicketById(id);
-
-        if (!result.success) {
-            return jsonError(
-                result.message,
-                result.status
-            );
-        }
-
-        return respond(result.data, {
-            status: 200,
-        });
+        return fromService(await ticketService.getMyTicket(id, user._id));
     } catch (error) {
         return handleRouteError(error);
     }
