@@ -22,7 +22,7 @@ npm run seed:admin -- +15551234567 YourPassword123!
 npm run dev
 ```
 
-MongoDB and Redis must be running. With Docker everything starts together:
+MongoDB is required. Redis is optional: when it is unavailable, the app uses an in-memory fallback for cache, rate limits, OTP and session revocation. Run Redis for multi-instance or production deployments. With Docker everything starts together:
 
 ```bash
 docker compose up -d --build
@@ -35,6 +35,7 @@ All settings live in `.env`. See [`.env.example`](.env.example) for the full lis
 | Variable               | Description                                       |
 | ---------------------- | ------------------------------------------------- |
 | `MONGO_URI`            | MongoDB connection string                         |
+| `REDIS_ENABLED`        | Set to `false` to use the in-memory fallback      |
 | `REDIS_HOST`           | Redis host (default `127.0.0.1`)                  |
 | `REDIS_PORT`           | Redis port (default `6379`)                       |
 | `ACCESS_TOKEN`         | Secret used to sign access tokens                 |
@@ -88,8 +89,13 @@ Order checks run every `ORDER_SWEEP_MINUTES` (default 10) inside the server proc
 
 ## Security
 
-- Rate limiting on login, signup, SMS codes, password reset and public forms (Redis)
+- Rate limiting on login, signup, SMS codes, password reset and public forms (Redis, with an in-memory fallback)
 - Banned users are blocked on every request
 - Changing the phone number requires an SMS code
 - Changing or resetting the password signs out other devices
 - Uploaded images are checked by file content
+
+## Troubleshooting
+
+- If Redis is not running, the app logs one warning and continues with the in-memory fallback. Start Redis or set `REDIS_ENABLED=false`.
+- Do not run `npm run build` while `npm run dev` is running. Both write to `.next`; stop the dev server before building, and delete `.next` if a build was interrupted.
