@@ -61,7 +61,7 @@ export default function ForgotPasswordForm() {
   const resetErrors = resetForm.formState.errors;
 
   return (
-    <AuthShell image="https://images.unsplash.com/photo-1684244160171-97f5dac39204?auto=format&fit=crop&w=600&h=600&q=80">
+    <AuthShell image="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=700&h=800&q=80">
       <div className="auth-card">
         {!phoneNumber ? (
           <form

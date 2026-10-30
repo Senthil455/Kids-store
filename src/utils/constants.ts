@@ -5,7 +5,7 @@ export const toAbsoluteUrl = (path: string) => (/^https?:\/\//i.test(path) ? pat
 export const DEFAULT_AVATAR =
   "/avatar.svg";
 
-export const PLACEHOLDER_IMAGE = "/placeholder.png";
+export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 
 export const ROUTES = {
   home: "/",

@@ -27,6 +27,8 @@ const nextConfig = {
         ...(siteUrl.port ? { port: siteUrl.port } : {}),
         pathname: "/uploads/**",
       },
+      { protocol: "https", hostname: "placehold.co" },
+      { protocol: "https", hostname: "placehold.co" },
     ],
   },
 

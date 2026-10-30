@@ -189,7 +189,7 @@ export default function SiteInfoForm({ info }: { info: SiteInfo | null }) {
               <input
                 id="info-logo"
                 {...register("logo")}
-                placeholder="/avatar.svg"
+                placeholder="https://placehold.co/200x60?text=Logo"
                 className={`input text-sm ${errors.logo ? "input-error" : ""}`}
               />
               {errors.logo ? (

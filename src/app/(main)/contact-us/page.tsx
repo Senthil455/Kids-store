@@ -49,7 +49,7 @@ export default async function ContactPage() {
               We&apos;d love to hear from you
             </p>
             <Image
-              src="/images/about-kids.webp"
+              src="https://images.unsplash.com/photo-1611708314849-8bb91fe0fa56?auto=format&fit=crop&w=1074&h=396&q=80"
               alt="Five smiling kids lying on the floor in colorful sweaters"
               width={1074}
               height={396}
