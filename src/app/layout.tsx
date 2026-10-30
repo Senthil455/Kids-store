@@ -43,6 +43,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} suppressHydrationWarning />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:wght@400..800&display=swap"
+          rel="stylesheet"
+        />
       </head>
 
       <body className="bg-white transition-colors duration-300 dark:bg-ink-900">

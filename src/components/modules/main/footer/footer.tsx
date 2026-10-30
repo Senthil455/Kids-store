@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaInstagram, FaLinkedinIn, FaTelegram } from "react-icons/fa6";
+import { FaGithub, FaInstagram, FaLinkedinIn, FaTelegram } from "react-icons/fa6";
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import NewsletterForm from "@/components/modules/main/footer/newsletterForm";
 import SiteLogo from "@/components/modules/ui/siteLogo";
@@ -18,6 +18,7 @@ const buildSocials = (info: SiteInfo | null) =>
     { icon: FaInstagram, label: "Instagram", href: info?.socials?.instagram },
     { icon: FaTelegram, label: "Telegram", href: info?.socials?.telegram },
     { icon: FaLinkedinIn, label: "LinkedIn", href: info?.socials?.linkedin },
+    { icon: FaGithub, label: "GitHub", href: info?.socials?.github },
   ].filter((item): item is { icon: IconType; label: string; href: string } => Boolean(item.href));
 
 const buildContact = (info: SiteInfo | null) =>
@@ -121,7 +122,15 @@ const Footer = ({ info = null }: { info?: SiteInfo | null }) => {
       <div className="border-t border-gray-200 dark:border-white/10">
         <div className="container-x flex flex-col-reverse items-center justify-between gap-5 py-6 sm:flex-row">
           <p className="text-xs text-gray-600 dark:text-gray-500">
-            © {new Date().getFullYear()} Kids Store. All rights reserved.
+            © {new Date().getFullYear()} Kids Store. All rights reserved. Built by{" "}
+            <a
+              href="https://github.com/Senthil455"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-brand-600 hover:underline dark:text-brand-300"
+            >
+              @Senthil455
+            </a>
           </p>
 
           <ul className="flex items-center gap-1">

@@ -99,9 +99,9 @@ const LoginForm = ({ showRegisterForm }: { showRegisterForm: () => void }) => {
               <input
                 className={`input flex-1 ${phoneError ? "input-error" : ""}`}
                 type="tel"
-                inputMode="numeric"
+                inputMode="tel"
                 autoComplete="tel"
-                placeholder="09xxxxxxxxx"
+                placeholder="+1 555 123 4567"
                 aria-label="Phone number for one-time code"
                 value={phoneInput}
                 onChange={(e) => setPhoneInput(e.target.value)}

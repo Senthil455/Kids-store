@@ -16,23 +16,32 @@ const formatSeconds = (total) =>
   `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
 
 const sendSms = async (phone, code) => {
-  if (process.env.NODE_ENV !== "production" && !process.env.SMS_USER) {
-    logger.info(`[DEV OTP] ${phone}: ${code}`);
-    return;
+  const apiUrl = process.env.SMS_API_URL;
+
+  if (!apiUrl) {
+    if (process.env.NODE_ENV !== "production") {
+      logger.info(`[DEV OTP] ${phone}: ${code}`);
+      return;
+    }
+    throw new Error("SMS provider is not configured");
   }
 
   await axios.post(
-    "https://ippanel.com/api/select",
+    apiUrl,
     {
-      op: "pattern",
-      user: process.env.SMS_USER,
-      pass: process.env.SMS_PASS,
-      fromNum: process.env.SMS_FROM || "3000505",
-      toNum: phone,
-      patternCode: process.env.SMS_PATTERN,
-      inputData: [{ "verification-code": code }],
+      to: phone,
+      message: `Your verification code is ${code}`,
+      sender: process.env.SMS_SENDER || undefined,
+      template_id: process.env.SMS_TEMPLATE_ID || undefined,
+      variables: { code: String(code) },
     },
-    { headers: { "Content-Type": "application/json" }, timeout: 10000 }
+    {
+      headers: {
+        "Content-Type": "application/json",
+        ...(process.env.SMS_API_KEY ? { Authorization: `Bearer ${process.env.SMS_API_KEY}` } : {}),
+      },
+      timeout: 10000,
+    }
   );
 };
 

@@ -7,14 +7,13 @@ export const contactValidationSchema = z.object({
     .trim()
     .min(3, "Name must be at least 3 characters")
     .max(40, "Name cannot exceed 40 characters")
-    .refine((val) => /^[a-zA-ZA-Za-z\s]+$/.test(val), "Name must only contain letters"),
+    .refine((val) => /^[\p{L}\s.'-]+$/u.test(val), "Name must only contain letters"),
 
   email: z.string().trim().toLowerCase().email("Invalid email format"),
 
   phone: z
     .string()
     .trim()
-    .length(11, "Phone number must be exactly 11 digits")
     .regex(/^\+?[1-9]\d{6,14}$/, "Invalid phone number format"),
 
   body: z

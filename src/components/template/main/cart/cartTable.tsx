@@ -28,10 +28,10 @@ const SHIPPING_FIELDS: Array<{
   name: keyof ShippingAddress;
   label: string;
   autoComplete: string;
-  inputMode?: "numeric";
+  inputMode?: "numeric" | "tel";
 }> = [
   { name: "name", label: "Full name", autoComplete: "name" },
-  { name: "phone", label: "Phone number", autoComplete: "tel", inputMode: "numeric" },
+  { name: "phone", label: "Phone number", autoComplete: "tel", inputMode: "tel" },
   { name: "state", label: "State", autoComplete: "address-level1" },
   { name: "city", label: "City", autoComplete: "address-level2" },
   { name: "address", label: "Address", autoComplete: "street-address" },
@@ -328,7 +328,7 @@ const CartTable = ({ initialCart, addresses = [], defaultPhone = "", walletBalan
               <legend className="mb-1 font-semibold">Payment method</legend>
               <label className="flex cursor-pointer items-center gap-2">
                 <input type="radio" value="online" {...register("paymentMethod")} />
-                Online payment (payment gateway)
+                Online payment
               </label>
               <label className="flex cursor-pointer items-center gap-2">
                 <input type="radio" value="cash" {...register("paymentMethod")} />

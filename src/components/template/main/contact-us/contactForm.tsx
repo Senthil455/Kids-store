@@ -13,11 +13,11 @@ const FIELDS: Array<{
   label: string;
   type: string;
   autoComplete: string;
-  inputMode?: "numeric";
+  inputMode?: "tel";
 }> = [
   { name: "name", label: "Full name", type: "text", autoComplete: "name" },
   { name: "email", label: "Email", type: "email", autoComplete: "email" },
-  { name: "phone", label: "Phone number", type: "tel", autoComplete: "tel", inputMode: "numeric" },
+  { name: "phone", label: "Phone number", type: "tel", autoComplete: "tel", inputMode: "tel" },
 ];
 
 export default function ContactForm() {

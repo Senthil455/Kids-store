@@ -13,7 +13,7 @@ import { round2 } from "@/utils/pricing";
 import { notifyUser, NOTIFY_LINKS } from "@/utils/notify";
 import logger from "@/utils/logger";
 
-import { createPayment, paymentUrl as payUrl, toGatewayAmount as togateway amount } from "@/services/server/shared/paymentGateway";
+import { createPayment, paymentUrl as buildPaymentUrl } from "@/services/server/shared/paymentGateway";
 
 import {
   buildOrderIdSearchExpr,
@@ -40,7 +40,8 @@ const checkout = async (userId, shippingAddress, paymentMethod, idempotencyKey =
         success: true,
         data: {
           order: existing,
-          paymentUrl: existing.payment?.authority ? payUrl(existing.payment.authority) : null,
+          paymentUrl:
+            existing.payment?.url || (existing.payment?.authority ? buildPaymentUrl(existing.payment.authority) : null),
         },
       };
     }
@@ -267,12 +268,12 @@ const checkout = async (userId, shippingAddress, paymentMethod, idempotencyKey =
 
     if ((paymentMethod === "wallet" || paymentMethod === "online") && order.pricing.total > 0) {
       const payment = await createPayment(
-        togateway amount(order.pricing.total),
+        order.pricing.total,
         `Order ${order._id}`,
         shippingAddress?.phone || undefined
       );
 
-      if (!payment?.data?.authority) {
+      if (!payment?.data?.authority || !payment.data.url) {
         await rollback("payment init failed");
 
         return {
@@ -286,11 +287,12 @@ const checkout = async (userId, shippingAddress, paymentMethod, idempotencyKey =
 
       order.payment = {
         authority: payment.data.authority,
+        url: payment.data.url,
         refId: null,
         paidAt: null,
       };
 
-      paymentUrl = payUrl(payment.data.authority);
+      paymentUrl = payment.data.url;
 
       await order.save();
     }

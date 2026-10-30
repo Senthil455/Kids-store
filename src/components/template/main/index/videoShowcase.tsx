@@ -49,7 +49,7 @@ export default function VideoShowcase() {
         .catch((error: DOMException) => {
           if (error.name === "AbortError") return;
           if (error.name === "NotSupportedError") {
-            console.warn(`[VideoShowcase] cannot play ${VIDEO_SRC} - is it in public/videos?`, error);
+            console.warn(`[VideoShowcase] cannot play ${VIDEO_SRC}`, error);
           }
           setBlocked(true);
         });

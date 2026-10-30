@@ -6,8 +6,6 @@ const STALE_CLAIM_MS = 2 * 60 * 1000;
 
 const isFinished = (order) => order.status !== "created" && order.items.every((item) => item.stockReserved);
 
-const togateway amount = (store currency) => Math.round(Number(store currency || 0) * 10);
-
 const verify = async (authority) => {
   if (!authority) {
     return {
@@ -72,7 +70,7 @@ const verify = async (authority) => {
     };
   }
 
-  const result = await verifyPayment(authority, togateway amount(claimed.pricing.total));
+  const result = await verifyPayment(authority, claimed.pricing.total);
 
   if (!result.success && result.unreachable) {
     claimed.finalizedAt = null;

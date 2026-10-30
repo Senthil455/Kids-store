@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Kids Store product placeholder">
+  <rect width="400" height="400" fill="#f7f8fa"/>
+  <circle cx="200" cy="176" r="104" fill="#ecf8f7"/>
+  <path d="M148 140l32-22c12-8 28-8 40 0l32 22 22-10c8-4 16 2 16 11v34c0 7-6 12-13 11l-25-4v78c0 9-7 16-16 16h-72c-9 0-16-7-16-16v-78l-25 4c-7 1-13-4-13-11v-34c0-9 8-15 16-11l22 10z" fill="none" stroke="#38aba3" stroke-width="10" stroke-linejoin="round"/>
+  <text x="200" y="318" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#5c6577">Kids Store</text>
+  <circle cx="318" cy="94" r="12" fill="#ff9e8f"/>
+  <circle cx="84" cy="112" r="9" fill="#ffd23f"/>
+</svg>

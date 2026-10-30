@@ -50,7 +50,7 @@ export default async function ContactPage() {
             </p>
             <Image
               src="https://images.unsplash.com/photo-1611708314849-8bb91fe0fa56?auto=format&fit=crop&w=1074&h=396&q=80"
-              alt="Five smiling kids lying on the floor in colorful sweaters"
+              alt="Two children holding hands while walking through a sunny hillside"
               width={1074}
               height={396}
               sizes="(min-width: 768px) 50vw, 100vw"

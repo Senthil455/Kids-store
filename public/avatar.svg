@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Kids Store avatar">
+  <rect width="200" height="200" rx="100" fill="#ecf8f7"/>
+  <circle cx="100" cy="78" r="34" fill="#38aba3"/>
+  <circle cx="88" cy="74" r="4" fill="#ffffff"/>
+  <circle cx="112" cy="74" r="4" fill="#ffffff"/>
+  <path d="M88 90c7 7 17 7 24 0" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M48 176c6-30 26-46 52-46s46 16 52 46" fill="#38aba3"/>
+  <circle cx="157" cy="44" r="9" fill="#ff9e8f"/>
+  <circle cx="43" cy="58" r="7" fill="#ffd23f"/>
+</svg>

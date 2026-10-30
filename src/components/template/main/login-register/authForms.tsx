@@ -10,7 +10,10 @@ const AuthForms = () => {
   const [mode, setMode] = useState<Exclude<AuthMode, "sms">>("login");
 
   return (
-    <AuthShell image="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=700&h=800&q=80">
+    <AuthShell
+      image="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=700&h=800&q=80"
+      alt="A child wearing a polka-dot top in front of a flower wall"
+    >
       {mode === "login" ? (
         <LoginForm showRegisterForm={() => setMode("register")} />
       ) : (

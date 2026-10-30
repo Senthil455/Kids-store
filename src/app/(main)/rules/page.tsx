@@ -72,7 +72,7 @@ export default async function RulesPage() {
           <Image
             width={600}
             height={600}
-            alt=""
+            alt="A white kids dress hanging by a sunny window"
             src="https://images.unsplash.com/photo-1684244160171-97f5dac39204?auto=format&fit=crop&w=600&h=600&q=80"
             className="h-[260px] w-full rounded-2xl object-cover shadow-card sm:h-[380px] md:h-[520px]"
           />

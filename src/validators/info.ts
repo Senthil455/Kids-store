@@ -12,7 +12,8 @@ export const infoSchema = z.object({
       instagram: optionalUrl,
       telegram: optionalUrl,
       linkedin: optionalUrl,
+      github: optionalUrl,
     })
     .optional()
-    .default({ instagram: "", telegram: "", linkedin: "" }),
+    .default({ instagram: "", telegram: "", linkedin: "", github: "" }),
 });

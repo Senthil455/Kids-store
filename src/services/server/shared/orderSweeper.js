@@ -95,7 +95,7 @@ const resolvePendingPayments = async () => {
       if (order.paymentMethod === "wallet" || !order.payment?.authority) {
         wasPaid = walletSpent > 0 && walletSpent >= orderTotal - 0.005;
       } else {
-        const result = await verifyPayment(order.payment.authority, Math.round(order.pricing.total * 10));
+        const result = await verifyPayment(order.payment.authority, order.pricing.total);
         if (result.unreachable) {
           order.finalizedAt = null;
           await order.save();

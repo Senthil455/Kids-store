@@ -25,6 +25,7 @@ const schema = new mongoose.Schema(
       instagram: { type: String, default: "" },
       telegram: { type: String, default: "" },
       linkedin: { type: String, default: "" },
+      github: { type: String, default: "" },
     },
   },
   {

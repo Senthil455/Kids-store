@@ -76,6 +76,7 @@ const orderSchema = new Schema(
     },
     payment: {
       authority: { type: String, default: null },
+      url: { type: String, default: null },
       refId: { type: String, default: null },
       paidAt: { type: Date, default: null },
     },

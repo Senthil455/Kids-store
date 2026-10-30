@@ -39,7 +39,8 @@ const STATES: Record<PaymentResultState, { Icon: IconType; color: string; title:
 export default async function VerifyPaymentPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const authority = firstParam(params.Authority ?? params.authority, 200);
-  const gatewayStatus = firstParam(params.Status, 10);
+  const gatewayStatus = firstParam(params.Status ?? params.status, 20)?.toLowerCase();
+  const gatewaySuccess = firstParam(params.success, 10)?.toLowerCase();
 
   await connectToDB();
 
@@ -65,7 +66,10 @@ export default async function VerifyPaymentPage({ searchParams }: PageProps) {
   const stateKey: PaymentResultState =
     order?.paymentStatus === "paid"
       ? "paid"
-      : order?.paymentStatus === "pending" && gatewayStatus !== "NOK"
+      : order?.paymentStatus === "pending" &&
+          gatewayStatus !== "nok" &&
+          gatewayStatus !== "failed" &&
+          gatewaySuccess !== "false"
         ? "pending"
         : "failed";
 

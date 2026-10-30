@@ -27,6 +27,7 @@ export interface OrderPricing {
 
 export interface OrderPayment {
   authority: string | null;
+  url?: string | null;
   refId: string | null;
   paidAt: ISODate | null;
 }

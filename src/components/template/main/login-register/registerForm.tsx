@@ -68,8 +68,8 @@ const RegisterForm = ({ showLoginForm }: { showLoginForm: () => void }) => {
           <input
             className="input"
             type="tel"
-            inputMode="numeric"
-            placeholder="Phone"
+            inputMode="tel"
+            placeholder="+1 555 123 4567"
             autoComplete="tel"
             {...register("phone")}
           />

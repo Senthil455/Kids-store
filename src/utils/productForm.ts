@@ -199,7 +199,7 @@ export const totalStock = (product: Pick<AdminProduct, "variants">) =>
   (product.variants ?? []).reduce((sum, variant) => sum + (variant.stock || 0), 0);
 
 export const cleanNumberInput = (raw: string, { decimal = true }: { decimal?: boolean } = {}) => {
-  const latin = raw.replace(/[.,]/g, ".");
+  const latin = raw.replace(/,/g, ".");
   if (!decimal) return latin.split(".")[0].replace(/\D/g, "");
   const [whole, ...rest] = latin.replace(/[^\d.]/g, "").split(".");
   return rest.length ? `${whole}.${rest.join("").slice(0, 2)}` : whole;

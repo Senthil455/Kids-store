@@ -108,9 +108,9 @@
   --color-text: #2e3441;
   --color-text-dark: #141925;
 
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-  --font-display: ui-sans-serif, system-ui, sans-serif;
-  --font-display-bold: ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
+  --font-display-bold: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
 
   --container-container: 1240px;
   --breakpoint-xs: 420px;

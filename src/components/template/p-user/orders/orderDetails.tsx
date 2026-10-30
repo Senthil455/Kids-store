@@ -17,7 +17,7 @@ interface OrderDetailsProps {
 
 const PAYMENT_METHOD: Record<string, string> = {
   cash: "Cash on delivery",
-  payment gateway: "Online (payment gateway)",
+  online: "Online payment",
   wallet: "Wallet",
 };
 

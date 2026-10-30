@@ -2,8 +2,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "";
 
 export const toAbsoluteUrl = (path: string) => (/^https?:\/\//i.test(path) ? path : `${SITE_URL}${path}`);
 
-export const DEFAULT_AVATAR =
-  "/avatar.svg";
+export const DEFAULT_AVATAR = "/avatar.svg";
 
 export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 

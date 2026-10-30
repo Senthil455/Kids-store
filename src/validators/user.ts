@@ -4,7 +4,6 @@ import { dateRangeQuery } from "@/validators/_shared";
 const phoneSchema = z
   .string()
   .trim()
-  .length(11, "Phone number must be exactly 11 digits")
   .regex(/^\+?[1-9]\d{6,14}$/, "Invalid phone number format");
 
 export const strongPasswordSchema = z

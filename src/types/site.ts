@@ -7,6 +7,7 @@ export interface SiteInfo {
     instagram?: string;
     telegram?: string;
     linkedin?: string;
+    github?: string;
   };
 }
 

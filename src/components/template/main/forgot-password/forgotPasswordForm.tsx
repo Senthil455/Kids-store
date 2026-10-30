@@ -61,7 +61,10 @@ export default function ForgotPasswordForm() {
   const resetErrors = resetForm.formState.errors;
 
   return (
-    <AuthShell image="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=700&h=800&q=80">
+    <AuthShell
+      image="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=700&h=800&q=80"
+      alt="A flat lay of a white kids t-shirt, knitted hat and teddy bear"
+    >
       <div className="auth-card">
         {!phoneNumber ? (
           <form
@@ -76,8 +79,9 @@ export default function ForgotPasswordForm() {
               id="phone"
               className="input"
               type="tel"
-              inputMode="numeric"
+              inputMode="tel"
               autoComplete="tel"
+              placeholder="+1 555 123 4567"
               {...phoneForm.register("phone")}
             />
             {phoneErrors.phone && <p className="field-error">{phoneErrors.phone.message}</p>}

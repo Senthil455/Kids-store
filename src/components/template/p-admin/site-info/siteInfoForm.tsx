@@ -16,15 +16,16 @@ const schema = z.object({
   email: z.string().trim().toLowerCase().email("Enter a valid email"),
   logo: z.string().trim().min(1, "Upload a logo or paste its address"),
   address: z.string().trim().max(300, "At most 300 characters"),
-  socials: z.object({ instagram: social, telegram: social, linkedin: social }),
+  socials: z.object({ instagram: social, telegram: social, linkedin: social, github: social }),
 });
 
 type FormValues = z.infer<typeof schema>;
 
 const SOCIALS = [
-  { key: "instagram", label: "Instagram", placeholder: "https://instagram.com/kidsstore" },
-  { key: "telegram", label: "Telegram", placeholder: "https://t.me/kidsstore" },
-  { key: "linkedin", label: "LinkedIn", placeholder: "https://linkedin.com/company/kidsstore" },
+  { key: "instagram", label: "Instagram", placeholder: "https://instagram.com/senthi455" },
+  { key: "telegram", label: "Telegram", placeholder: "https://t.me/senthi455" },
+  { key: "linkedin", label: "LinkedIn", placeholder: "https://linkedin.com/in/senthi455" },
+  { key: "github", label: "GitHub", placeholder: "https://github.com/Senthil455" },
 ] as const;
 
 export default function SiteInfoForm({ info }: { info: SiteInfo | null }) {
@@ -50,6 +51,7 @@ export default function SiteInfoForm({ info }: { info: SiteInfo | null }) {
         instagram: info?.socials?.instagram ?? "",
         telegram: info?.socials?.telegram ?? "",
         linkedin: info?.socials?.linkedin ?? "",
+        github: info?.socials?.github ?? "",
       },
     },
   });
@@ -87,7 +89,7 @@ export default function SiteInfoForm({ info }: { info: SiteInfo | null }) {
                 id="info-phone"
                 type="tel"
                 {...register("phone")}
-                placeholder="021 1234 5678"
+                placeholder="+91 98765 43210"
                 className={`input tabular-nums ${errors.phone ? "input-error" : ""}`}
               />
               {errors.phone && <span className="field-error">{errors.phone.message}</span>}
@@ -180,7 +182,8 @@ export default function SiteInfoForm({ info }: { info: SiteInfo | null }) {
               disabled={upload.isPending}
               className="btn btn-secondary w-full"
             >
-              <LuUpload className="size-4" /> {upload.isPending ? "Uploading..." : logo ? "Replace logo" : "Upload logo"}
+              <LuUpload className="size-4" />{" "}
+              {upload.isPending ? "Uploading..." : logo ? "Replace logo" : "Upload logo"}
             </button>
             <div>
               <label htmlFor="info-logo" className="label">

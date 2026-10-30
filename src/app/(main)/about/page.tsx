@@ -58,9 +58,9 @@ export default function AboutPage() {
         <span className="text-sm font-semibold text-coral-500 dark:text-coral-400">About Us</span>
         <h1 className="my-2.5 text-2xl font-bold sm:text-3xl">Clothes made for the way kids really play</h1>
         <p className="leading-8 text-gray-700 dark:text-gray-300">
-          Kids Store is a children&apos;s clothing store for every stage, from first steps to fourteen. We pick each piece
-          with parents in mind and test it against what children do all day: running, rolling on the floor and growing
-          out of everything far too fast.
+          Kids Store is a children&apos;s clothing store for every stage, from first steps to fourteen. We pick each
+          piece with parents in mind and test it against what children do all day: running, rolling on the floor and
+          growing out of everything far too fast.
         </p>
       </section>
 
