@@ -108,9 +108,9 @@
   --color-text: #2e3441;
   --color-text-dark: #141925;
 
-  --font-sans: display, ui-sans-serif, system-ui, sans-serif;
-  --font-display: display, sans-serif;
-  --font-display-bold: display, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-display: ui-sans-serif, system-ui, sans-serif;
+  --font-display-bold: ui-sans-serif, system-ui, sans-serif;
 
   --container-container: 1240px;
   --breakpoint-xs: 420px;
@@ -129,26 +129,6 @@
   --normal-bg: var(--color-ink-800);
   --normal-text: var(--color-gray-100);
   --normal-border: rgb(255 255 255 / 0.1);
-}
-
-@font-face {
-  font-family: display;
-  src: url("/fonts/display/Display-Medium.woff") format("woff");
-  font-weight: 100 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: display;
-  src: url("/fonts/display/Display-Bold.woff") format("woff");
-  font-weight: 600 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: display-bold;
-  src: url("/fonts/display/Display-Bold.woff") format("woff");
-  font-display: swap;
 }
 
 @layer base {

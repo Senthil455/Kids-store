@@ -198,14 +198,8 @@ export const productToFormValues = (product?: AdminProduct | null): ProductFormV
 export const totalStock = (product: Pick<AdminProduct, "variants">) =>
   (product.variants ?? []).reduce((sum, variant) => sum + (variant.stock || 0), 0);
 
-const LOCALE_DIGITS = "0123456789";
-const ARABIC_DIGITS = "٠١٢٣٤٥٦٧٨٩";
-
 export const cleanNumberInput = (raw: string, { decimal = true }: { decimal?: boolean } = {}) => {
-  const latin = raw
-    .replace(/[0-9]/g, (d) => String(LOCALE_DIGITS.indexOf(d)))
-    .replace(/[٠-٩]/g, (d) => String(ARABIC_DIGITS.indexOf(d)))
-    .replace(/[.,]/g, ".");
+  const latin = raw.replace(/[.,]/g, ".");
   if (!decimal) return latin.split(".")[0].replace(/\D/g, "");
   const [whole, ...rest] = latin.replace(/[^\d.]/g, "").split(".");
   return rest.length ? `${whole}.${rest.join("").slice(0, 2)}` : whole;
